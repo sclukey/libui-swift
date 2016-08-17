@@ -9,13 +9,8 @@ class ProgressBar: Control {
 		super.init(c: UnsafeMutablePointer(self.op))
 	}
 
-	var value:Int {
-		get {
-			return Int(clibui.uiProgressBarValue(self.op))
-		}
-		set {
-			clibui.uiProgressBarSetValue(self.op, Int32(newValue))
-		}
+	func set(value:Int) -> Void {
+		clibui.uiProgressBarSetValue(self.op, Int32(value))
 	}
 
 }

@@ -14,24 +14,23 @@ class Tab: Control {
 	}
 
 	func insert(name:String, before:Int, child:Control) -> Void {
-		clibui.uiTabInsertAt(self.op, name, Int32(before), child.control)
+		clibui.uiTabInsertAt(self.op, name, UInt(before), child.control)
 	}
 
 	func delete(index:Int) -> Void {
-		clibui.uiTabDelete(self.op, Int32(index))
+		clibui.uiTabDelete(self.op, UInt(index))
 	}
 
 	func numPages() -> Int {
 		return Int(clibui.uiTabNumPages(self.op))
 	}
 
-	var margined:Bool {
-		set {
-			clibui.uiGroupSetMargined(self.op, newValue ? 1 : 0)
-		}
-		get {
-			return clibui.uiGroupMargined(self.op) == 1
-		}
+	func getMargined(index:Int) -> Bool {
+		return clibui.uiTabMargined(self.op, UInt(index)) == 1
+	}
+
+	func set(margined:Bool, index:Int) {
+		clibui.uiTabSetMargined(self.op, UInt(index), margined ? 1 : 0)
 	}
 
 	func set(child:Control) -> Void {

@@ -5,7 +5,7 @@ class Slider: Control {
 	private var onChangedHandler: () -> Void
 
 	init(min:Int, max:Int) {
-		self.op = clibui.uiNewSlider(Int32(min), Int32(max));
+		self.op = clibui.uiNewSlider(min, max);
 		self.onChangedHandler = {}
 
 		super.init(c: UnsafeMutablePointer(self.op))
@@ -16,7 +16,7 @@ class Slider: Control {
 			return Int(clibui.uiSliderValue(self.op))
 		}
 		set {
-			clibui.uiSliderSetValue(self.op, Int32(newValue))
+			clibui.uiSliderSetValue(self.op, newValue)
 		}
 	}
 

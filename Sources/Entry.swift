@@ -1,26 +1,11 @@
 import clibui
 
-enum EntryType {
-	case Normal
-	case Password
-	case Search
-}
-
 class Entry: Control {
 	let op:OpaquePointer;
 	private var onChangedHandler: () -> Void
 
-	init(type:EntryType=EntryType.Normal) {
-
-		switch type {
-			case .Normal:
-				self.op = clibui.uiNewEntry()
-			case .Password:
-				self.op = clibui.uiNewPasswordEntry()
-			case .Search:
-				self.op = clibui.uiNewSearchEntry()
-		}
-
+	init() {
+		self.op = clibui.uiNewEntry()
 		self.onChangedHandler = {}
 
 		super.init(c: UnsafeMutablePointer(self.op))

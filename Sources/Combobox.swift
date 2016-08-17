@@ -20,7 +20,7 @@ class Combobox: Control {
 			return Int(clibui.uiComboboxSelected(self.op))
 		}
 		set {
-			clibui.uiComboboxSetSelected(self.op, Int32(newValue))
+			clibui.uiComboboxSetSelected(self.op, newValue)
 		}
 	}
 

@@ -5,7 +5,7 @@ class Spinbox: Control {
 	private var onChangedHandler: () -> Void
 
 	init(min:Int, max:Int) {
-		self.op = clibui.uiNewSpinbox(Int32(min), Int32(max));
+		self.op = clibui.uiNewSpinbox(min, max);
 		self.onChangedHandler = {}
 
 		super.init(c: UnsafeMutablePointer(self.op))
@@ -16,7 +16,7 @@ class Spinbox: Control {
 			return Int(clibui.uiSpinboxValue(self.op))
 		}
 		set {
-			clibui.uiSpinboxSetValue(self.op, Int32(newValue))
+			clibui.uiSpinboxSetValue(self.op, newValue)
 		}
 	}
 

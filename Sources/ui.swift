@@ -29,39 +29,7 @@ func messageBoxError(parent:Window, title:String, description:String) -> Void {
 	clibui.uiMsgBoxError(parent.op, title, description)
 }
 
-enum Align {
-	case Fill
-	case Start
-	case Center
-	case End
-}
-
-enum At {
-	case Leading
-	case Top
-	case Trailing
-	case Bottom
-}
-
-func convert(align:Align) -> clibui.uiAlign {
-	switch align {
-		case Align.Fill:   return UInt32(clibui.uiAlignFill)
-		case Align.Start:  return UInt32(clibui.uiAlignStart)
-		case Align.Center: return UInt32(clibui.uiAlignCenter)
-		case Align.End:    return UInt32(clibui.uiAlignEnd)
-	}
-}
-
-func convert(at:At) -> clibui.uiAt {
-	switch at {
-		case At.Leading:  return UInt32(clibui.uiAtLeading)
-		case At.Top:      return UInt32(clibui.uiAtTop)
-		case At.Trailing: return UInt32(clibui.uiAtTrailing)
-		case At.Bottom:   return UInt32(clibui.uiAtBottom)
-	}
-}
-
-
+/*
 struct ui {
 
 	func smallStart() {
@@ -237,3 +205,4 @@ struct ui {
 
     var text = "Hello, World!"
 }
+*/

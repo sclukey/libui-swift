@@ -18,7 +18,7 @@ class Box: Control {
 	}
 
 	func delete(index:Int) -> Void {
-		clibui.uiBoxDelete(self.op, Int32(index))
+		clibui.uiBoxDelete(self.op, UInt(index))
 	}
 
 	var padded:Bool {
