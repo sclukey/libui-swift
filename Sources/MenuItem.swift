@@ -1,15 +1,15 @@
 import clibui
 
-class MenuItem {
+public class MenuItem {
 	let op:OpaquePointer;
 	private var onClickedHandler: () -> Void
 
-	init(_ item:OpaquePointer) {
+	public init(_ item:OpaquePointer) {
 		self.op = item
 		self.onClickedHandler = {}
 	}
 
-	func on(clicked: () -> Void) -> Void {
+	public func on(clicked: () -> Void) -> Void {
 		onClickedHandler = clicked
 		clibui.uiMenuItemOnClicked(self.op, { (s, w, d) -> Void in
 			if let selfPointer = d {
@@ -20,15 +20,15 @@ class MenuItem {
 		}, UnsafeMutablePointer<Void>(Unmanaged.passUnretained(self).toOpaque()))		
 	}
 
-	func enable() -> Void {
+	public func enable() -> Void {
 		clibui.uiMenuItemEnable(self.op)
 	}
 
-	func disable() -> Void {
+	public func disable() -> Void {
 		clibui.uiMenuItemDisable(self.op)
 	}
 
-	var checked:Bool {
+	public var checked:Bool {
 		set {
 			clibui.uiMenuItemSetChecked(self.op, newValue ? 1 : 0)
 		}

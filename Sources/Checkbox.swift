@@ -1,17 +1,17 @@
 import clibui
 
-class Checkbox: Control {
+public class Checkbox: Control {
 	let op:OpaquePointer;
 	private var onToggledHandler: () -> Void
 
-	init(text:String) {
+	public init(text:String) {
 		self.op = clibui.uiNewCheckbox(text);
 		self.onToggledHandler = {}
 		
 		super.init(c: UnsafeMutablePointer(self.op))
 	}
 
-	func on(toggled: () -> Void) -> Void {
+	public func on(toggled: () -> Void) -> Void {
 		onToggledHandler = toggled
 		clibui.uiCheckboxOnToggled(self.op, { (w, d) -> Void in
 			if let selfPointer = d {
@@ -22,7 +22,7 @@ class Checkbox: Control {
 		}, UnsafeMutablePointer<Void>(Unmanaged.passUnretained(self).toOpaque()))		
 	}
 
-	var text:String {
+	public var text:String {
 		get {
 			return String(cString: clibui.uiCheckboxText(self.op))
 		}
@@ -31,7 +31,7 @@ class Checkbox: Control {
 		}
 	}
 
-	var checked:Bool {
+	public var checked:Bool {
 		set {
 			clibui.uiCheckboxSetChecked(self.op, newValue ? 1 : 0)
 		}

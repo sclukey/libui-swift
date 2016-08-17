@@ -7,25 +7,25 @@ _UI_EXTERN void uiMsgBox(uiWindow *parent, const char *title, const char *descri
 _UI_EXTERN void uiMsgBoxError(uiWindow *parent, const char *title, const char *description);
 */
 
-func openFile(parent:Window) -> String? {
+public func openFile(parent:Window) -> String? {
 	if let cPath = clibui.uiOpenFile(parent.op) {
 		return String(cString: cPath)
 	}
 	return nil
 }
 
-func saveFile(parent:Window) -> String? {
+public func saveFile(parent:Window) -> String? {
 	if let cPath = clibui.uiSaveFile(parent.op) {
 		return String(cString: cPath)
 	}
 	return nil
 }
 
-func messageBox(parent:Window, title:String, description:String) -> Void {
+public func messageBox(parent:Window, title:String, description:String) -> Void {
 	clibui.uiMsgBox(parent.op, title, description)
 }
 
-func messageBoxError(parent:Window, title:String, description:String) -> Void {
+public func messageBoxError(parent:Window, title:String, description:String) -> Void {
 	clibui.uiMsgBoxError(parent.op, title, description)
 }
 

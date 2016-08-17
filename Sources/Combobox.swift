@@ -1,21 +1,21 @@
 import clibui
 
-class Combobox: Control {
+public class Combobox: Control {
 	let op:OpaquePointer;
 	private var onSelectedHandler: () -> Void
 
-	init() {
+	public init() {
 		self.op = clibui.uiNewCombobox();
 		self.onSelectedHandler = {}
 
 		super.init(c: UnsafeMutablePointer(self.op))
 	}
 
-	func append(text:String) -> Void {
+	public func append(text:String) -> Void {
 		clibui.uiComboboxAppend(self.op, text)
 	}
 
-	var selected:Int {
+	public var selected:Int {
 		get {
 			return Int(clibui.uiComboboxSelected(self.op))
 		}
@@ -24,7 +24,7 @@ class Combobox: Control {
 		}
 	}
 
-	func on(selected: () -> Void) -> Void {
+	public func on(selected: () -> Void) -> Void {
 		onSelectedHandler = selected
 		clibui.uiComboboxOnSelected(self.op, { (w, d) -> Void in
 			if let selfPointer = d {

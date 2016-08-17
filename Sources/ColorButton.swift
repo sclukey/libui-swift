@@ -1,10 +1,10 @@
 import clibui
 
-class ColorButton: Control {
+public class ColorButton: Control {
 	let op:OpaquePointer;
 	private var onChangedHandler: () -> Void
 
-	init() {
+	public init() {
 		self.op = clibui.uiNewColorButton()
 		self.onChangedHandler = {}
 
@@ -27,7 +27,7 @@ class ColorButton: Control {
 		}
 	}
 
-	func on(changed: () -> Void) -> Void {
+	public func on(changed: () -> Void) -> Void {
 		onChangedHandler = changed
 		clibui.uiColorButtonOnChanged(self.op, { (w, d) -> Void in
 			if let selfPointer = d {

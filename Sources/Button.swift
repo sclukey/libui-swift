@@ -1,17 +1,17 @@
 import clibui
 
-class Button: Control {
+public class Button: Control {
 	let op:OpaquePointer;
 	private var onClickedHandler: () -> Void
 
-	init(text:String) {
+	public init(text:String) {
 		self.op = clibui.uiNewButton(text);
 		self.onClickedHandler = {}
 
 		super.init(c: UnsafeMutablePointer(self.op))
 	}
 
-	var text:String {
+	public var text:String {
 		get {
 			return String(cString: clibui.uiButtonText(self.op))
 		}
@@ -20,7 +20,7 @@ class Button: Control {
 		}
 	}
 
-	func on(clicked: () -> Void) -> Void {
+	public func on(clicked: () -> Void) -> Void {
 		onClickedHandler = clicked
 		clibui.uiButtonOnClicked(self.op, { (w, d) -> Void in
 			if let selfPointer = d {

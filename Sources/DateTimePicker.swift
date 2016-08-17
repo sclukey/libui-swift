@@ -1,15 +1,15 @@
 import clibui
 
-enum Picker {
+public enum Picker {
 	case Date
 	case Time
 	case DateTime
 }
 
-class DateTimePicker: Control {
+public class DateTimePicker: Control {
 	let op:OpaquePointer;
 
-	init(type:Picker=Picker.DateTime) {
+	public init(type:Picker=Picker.DateTime) {
 
 		switch type {
 			case .Date:

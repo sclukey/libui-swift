@@ -1,17 +1,17 @@
 import clibui
 
-class Entry: Control {
+public class Entry: Control {
 	let op:OpaquePointer;
 	private var onChangedHandler: () -> Void
 
-	init() {
+	public init() {
 		self.op = clibui.uiNewEntry()
 		self.onChangedHandler = {}
 
 		super.init(c: UnsafeMutablePointer(self.op))
 	}
 
-	var text:String {
+	public var text:String {
 		get {
 			return String(cString: clibui.uiEntryText(self.op))
 		}
@@ -20,7 +20,7 @@ class Entry: Control {
 		}
 	}
 
-	var readonly:Bool {
+	public var readonly:Bool {
 		get {
 			return clibui.uiEntryReadOnly(self.op) == 1
 		}
@@ -29,7 +29,7 @@ class Entry: Control {
 		}
 	}
 
-	func on(changed: () -> Void) -> Void {
+	public func on(changed: () -> Void) -> Void {
 		onChangedHandler = changed
 		clibui.uiEntryOnChanged(self.op, { (w, d) -> Void in
 			if let selfPointer = d {

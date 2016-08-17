@@ -1,15 +1,15 @@
 import clibui
 
-class Group: Control {
+public class Group: Control {
 	let op:OpaquePointer;
 
-	init(title:String) {
+	public init(title:String) {
 		self.op = clibui.uiNewGroup(title);
 
 		super.init(c: UnsafeMutablePointer(self.op))
 	}
 
-	var title:String {
+	public var title:String {
 		set {
 			clibui.uiGroupSetTitle(self.op, newValue)
 		}
@@ -18,7 +18,7 @@ class Group: Control {
 		}
 	}
 
-	var margined:Bool {
+	public var margined:Bool {
 		set {
 			clibui.uiGroupSetMargined(self.op, newValue ? 1 : 0)
 		}
@@ -27,7 +27,7 @@ class Group: Control {
 		}
 	}
 
-	func set(child:Control) -> Void {
+	public func set(child:Control) -> Void {
 		clibui.uiGroupSetChild(self.op, child.control)
 	}
 

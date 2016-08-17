@@ -1,9 +1,9 @@
 import clibui
 
-class Separator: Control {
+public class Separator: Control {
 	let op:OpaquePointer;
 
-	init() {
+	public init() {
 		self.op = clibui.uiNewHorizontalSeparator()
 
 		super.init(c: UnsafeMutablePointer(self.op))

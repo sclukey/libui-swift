@@ -1,10 +1,10 @@
 import clibui
 
-class MultilineEntry: Control {
+public class MultilineEntry: Control {
 	let op:OpaquePointer;
 	private var onChangedHandler: () -> Void
 
-	init(wrapping:Bool=true) {
+	public init(wrapping:Bool=true) {
 
 		if wrapping {
 			self.op = clibui.uiNewMultilineEntry()
@@ -17,11 +17,11 @@ class MultilineEntry: Control {
 		super.init(c: UnsafeMutablePointer(self.op))
 	}
 
-	func append(text:String) -> Void {
+	public func append(text:String) -> Void {
 		clibui.uiMultilineEntryAppend(self.op, text)
 	}
 
-	var text:String {
+	public var text:String {
 		get {
 			return String(cString: clibui.uiEntryText(self.op))
 		}
@@ -30,7 +30,7 @@ class MultilineEntry: Control {
 		}
 	}
 
-	var readonly:Bool {
+	public var readonly:Bool {
 		get {
 			return clibui.uiEntryReadOnly(self.op) == 1
 		}
@@ -39,7 +39,7 @@ class MultilineEntry: Control {
 		}
 	}
 
-	func on(changed: () -> Void) -> Void {
+	public func on(changed: () -> Void) -> Void {
 		onChangedHandler = changed
 		clibui.uiEntryOnChanged(self.op, { (w, d) -> Void in
 			if let selfPointer = d {

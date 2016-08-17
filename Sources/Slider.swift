@@ -1,17 +1,17 @@
 import clibui
 
-class Slider: Control {
+public class Slider: Control {
 	let op:OpaquePointer;
 	private var onChangedHandler: () -> Void
 
-	init(min:Int, max:Int) {
+	public init(min:Int, max:Int) {
 		self.op = clibui.uiNewSlider(min, max);
 		self.onChangedHandler = {}
 
 		super.init(c: UnsafeMutablePointer(self.op))
 	}
 
-	var value:Int {
+	public var value:Int {
 		get {
 			return Int(clibui.uiSliderValue(self.op))
 		}
@@ -20,7 +20,7 @@ class Slider: Control {
 		}
 	}
 
-	func on(changed: () -> Void) -> Void {
+	public func on(changed: () -> Void) -> Void {
 		onChangedHandler = changed
 		clibui.uiSliderOnChanged(self.op, { (w, d) -> Void in
 			if let selfPointer = d {

@@ -1,9 +1,9 @@
 import clibui
 
-class Box: Control {
+public class Box: Control {
 	let op:OpaquePointer;
 
-	init(vertical:Bool) {
+	public init(vertical:Bool) {
 		if vertical {
 			self.op = clibui.uiNewVerticalBox();
 		} else {
@@ -13,15 +13,15 @@ class Box: Control {
 		super.init(c: UnsafeMutablePointer(self.op))
 	}
 
-	func append(_ child:Control, stretchy:Bool=false) -> Void {
+	public func append(_ child:Control, stretchy:Bool=false) -> Void {
 		clibui.uiBoxAppend(self.op, child.control, stretchy ? 1 : 0)
 	}
 
-	func delete(index:Int) -> Void {
+	public func delete(index:Int) -> Void {
 		clibui.uiBoxDelete(self.op, UInt(index))
 	}
 
-	var padded:Bool {
+	public var padded:Bool {
 		get {
 			return clibui.uiBoxPadded(self.op) == 1
 		}
