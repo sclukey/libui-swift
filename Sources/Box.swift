@@ -3,10 +3,11 @@ import clibui
 public class Box: Control {
 	let op:OpaquePointer;
 
-	public init(vertical:Bool) {
-		if vertical {
+	public init(_ orientation:Orientation) {
+		switch orientation {
+		case .Vertical:
 			self.op = clibui.uiNewVerticalBox();
-		} else {
+		case .Horizontal:
 			self.op = clibui.uiNewHorizontalBox();
 		}
 		

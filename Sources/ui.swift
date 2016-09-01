@@ -2,6 +2,11 @@ import AppKit
 
 import clibui
 
+public enum Orientation {
+	case Vertical
+	case Horizontal
+}
+
 public struct InitOptions {
 	var options:clibui.uiInitOptions
 
