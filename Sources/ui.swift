@@ -27,14 +27,18 @@ public func quit() -> Void {
 
 public func openFile(parent:Window) -> String? {
 	if let cPath = clibui.uiOpenFile(parent.op) {
-		return String(cString: cPath)
+		let filename = String(cString: cPath)
+		clibui.uiFreeText(cPath)
+		return filename
 	}
 	return nil
 }
 
 public func saveFile(parent:Window) -> String? {
 	if let cPath = clibui.uiSaveFile(parent.op) {
-		return String(cString: cPath)
+		let filename = String(cString: cPath)
+		clibui.uiFreeText(cPath)
+		return filename
 	}
 	return nil
 }
