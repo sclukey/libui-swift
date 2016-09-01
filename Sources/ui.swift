@@ -52,6 +52,24 @@ public func saveFile(parent:Window) -> String? {
 	return nil
 }
 
+// TODO: The `uiOnShouldQuit` implementation here is an absolute mess,
+//   there really should be a better way to deal with this
+class onShouldQuitHandlerStruct {
+	var onShouldQuitHandler: () -> Bool = { return true }
+}
+var osqh_obj = onShouldQuitHandlerStruct()
+public func on(shouldQuit: () -> Bool) -> Void {
+	osqh_obj.onShouldQuitHandler = shouldQuit
+	clibui.uiOnShouldQuit({ (d) -> Int32 in
+		if let objectPointer = d {
+			let object = Unmanaged<onShouldQuitHandlerStruct>.fromOpaque(objectPointer).takeUnretainedValue()
+
+			return object.onShouldQuitHandler() ? 1 : 0
+		}
+		return 1
+	}, UnsafeMutablePointer<Void>(Unmanaged.passUnretained(osqh_obj).toOpaque()))
+}
+
 public func messageBox(parent:Window, title:String, description:String) -> Void {
 	clibui.uiMsgBox(parent.op, title, description)
 }
