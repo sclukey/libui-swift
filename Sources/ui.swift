@@ -26,6 +26,10 @@ public func main() -> Void {
 	clibui.uiMain()
 }
 
+public func uninit() -> Void {
+	clibui.uiUninit()
+}
+
 public func quit() -> Void {
 	clibui.uiQuit()
 }
