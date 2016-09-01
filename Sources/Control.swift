@@ -6,6 +6,10 @@ public class Control {
 		self.control = c
 	}
 
+	deinit {
+		self.destroy()
+	}
+
 	public func destroy() -> Void {
 		clibui.uiControlDestroy(self.control)
 	}
