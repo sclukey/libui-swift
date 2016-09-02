@@ -7,12 +7,12 @@ public class Menu {
 		self.op = clibui.uiNewMenu(title)
 	}
 
-	public func append(item:String) -> MenuItem {
-		return MenuItem(clibui.uiMenuAppendItem(self.op, item))
-	}
-
-	public func append(checkItem:String) -> MenuItem {
-		return MenuItem(clibui.uiMenuAppendCheckItem(self.op, checkItem))
+	public func appendItem(_ title:String, checkable:Bool = false) -> MenuItem {
+		if checkable {
+			return MenuItem(clibui.uiMenuAppendCheckItem(self.op, title))
+		} else {
+			return MenuItem(clibui.uiMenuAppendItem(self.op, title))
+		}
 	}
 
 	public func appendQuit() -> MenuItem {
