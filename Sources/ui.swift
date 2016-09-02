@@ -1,4 +1,6 @@
+#if os(OSX)
 import AppKit
+#endif
 
 import clibui
 
