@@ -1,15 +1,10 @@
 
-.PHONY: all build clean test
+.PHONY: all build clean
 
-all: clean build test
+all: clean build
 
 build:
-	#swift build -Xlinker -t -Xlinker -v -Xlinker -L/Users/sclukey/Desktop/libui/build/out
-	swift build -Xlinker -L/Users/sclukey/Desktop/libui/build-static/out
+	swift build -Xlinker -L/opt/local/lib
 
 clean:
 	swift build --clean
-
-test: build
-	#cp libui.a .build/debug
-	swift test
