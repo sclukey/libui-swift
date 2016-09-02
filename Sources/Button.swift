@@ -8,7 +8,7 @@ public class Button: Control {
 		self.op = clibui.uiNewButton(text);
 		self.onClickedHandler = {}
 
-		super.init(c: UnsafeMutablePointer(self.op))
+		super.init(UnsafeMutablePointer(self.op))
 	}
 
 	public var text:String {

@@ -6,6 +6,6 @@ public class Separator: Control {
 	public init() {
 		self.op = clibui.uiNewHorizontalSeparator()
 
-		super.init(c: UnsafeMutablePointer(self.op))
+		super.init(UnsafeMutablePointer(self.op))
 	}
 }

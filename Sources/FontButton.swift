@@ -8,7 +8,7 @@ public class FontButton: Control {
 		self.op = clibui.uiNewFontButton()
 		self.onChangedHandler = {}
 
-		super.init(c: UnsafeMutablePointer(self.op))
+		super.init(UnsafeMutablePointer(self.op))
 	}
 
 	public func getFont() -> DrawTextFont {

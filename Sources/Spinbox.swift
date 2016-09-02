@@ -8,7 +8,7 @@ public class Spinbox: Control {
 		self.op = clibui.uiNewSpinbox(min, max);
 		self.onChangedHandler = {}
 
-		super.init(c: UnsafeMutablePointer(self.op))
+		super.init(UnsafeMutablePointer(self.op))
 	}
 
 	public var value:Int {

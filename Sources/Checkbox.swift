@@ -8,7 +8,7 @@ public class Checkbox: Control {
 		self.op = clibui.uiNewCheckbox(text);
 		self.onToggledHandler = {}
 
-		super.init(c: UnsafeMutablePointer(self.op))
+		super.init(UnsafeMutablePointer(self.op))
 	}
 
 	public func on(toggled: () -> Void) -> Void {

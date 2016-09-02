@@ -13,7 +13,7 @@ public class Area: Control {
 		self.op = op
 		self.handler = handler
 
-		super.init(c: UnsafeMutablePointer(self.op))
+		super.init(UnsafeMutablePointer(self.op))
 
 		uiAreaMap[op.hashValue] = self
 	}

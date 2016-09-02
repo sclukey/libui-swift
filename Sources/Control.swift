@@ -2,7 +2,7 @@ import clibui
 
 public class Control {
 	let control:UnsafeMutablePointer<clibui.uiControl>
-	public init(c: UnsafeMutablePointer<clibui.uiControl>) {
+	public init(_ c: UnsafeMutablePointer<clibui.uiControl>) {
 		self.control = c
 	}
 

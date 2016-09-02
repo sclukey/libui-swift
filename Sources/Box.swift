@@ -11,7 +11,7 @@ public class Box: Control {
 			self.op = clibui.uiNewHorizontalBox();
 		}
 
-		super.init(c: UnsafeMutablePointer(self.op))
+		super.init(UnsafeMutablePointer(self.op))
 	}
 
 	public func append(_ child:Control, stretchy:Bool=false) -> Void {

@@ -8,7 +8,7 @@ public class ColorButton: Control {
 		self.op = clibui.uiNewColorButton()
 		self.onChangedHandler = {}
 
-		super.init(c: UnsafeMutablePointer(self.op))
+		super.init(UnsafeMutablePointer(self.op))
 	}
 
 	public var color:(red:Double, green:Double, blue:Double, alpha:Double) {

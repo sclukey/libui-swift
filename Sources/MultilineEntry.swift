@@ -14,7 +14,7 @@ public class MultilineEntry: Control {
 
 		self.onChangedHandler = {}
 
-		super.init(c: UnsafeMutablePointer(self.op))
+		super.init(UnsafeMutablePointer(self.op))
 	}
 
 	public func append(text:String) -> Void {

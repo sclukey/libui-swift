@@ -8,7 +8,7 @@ public class Slider: Control {
 		self.op = clibui.uiNewSlider(min, max);
 		self.onChangedHandler = {}
 
-		super.init(c: UnsafeMutablePointer(self.op))
+		super.init(UnsafeMutablePointer(self.op))
 	}
 
 	public var value:Int {

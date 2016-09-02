@@ -20,7 +20,7 @@ public class DateTimePicker: Control {
 				self.op = clibui.uiNewDateTimePicker()
 		}
 
-		super.init(c: UnsafeMutablePointer(self.op))
+		super.init(UnsafeMutablePointer(self.op))
 	}
 
 }

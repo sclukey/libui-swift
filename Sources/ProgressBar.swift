@@ -6,7 +6,7 @@ public class ProgressBar: Control {
 	public init() {
 		self.op = clibui.uiNewProgressBar();
 
-		super.init(c: UnsafeMutablePointer(self.op))
+		super.init(UnsafeMutablePointer(self.op))
 	}
 
 	public func set(value:Int) -> Void {

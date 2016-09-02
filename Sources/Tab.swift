@@ -6,7 +6,7 @@ public class Tab: Control {
 	public init() {
 		self.op = clibui.uiNewTab();
 
-		super.init(c: UnsafeMutablePointer(self.op))
+		super.init(UnsafeMutablePointer(self.op))
 	}
 
 	public func append(name:String, child:Control) -> Void {

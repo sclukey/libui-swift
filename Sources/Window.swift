@@ -8,7 +8,7 @@ public class Window: Control {
 		self.op = clibui.uiNewWindow(title, width, height, withMenu ? 1 : 0);
 		self.onCloseHandler = { return 0 }
 
-		super.init(c: UnsafeMutablePointer(self.op))
+		super.init(UnsafeMutablePointer(self.op))
 	}
 
 	public func on(closing: () -> Int) {

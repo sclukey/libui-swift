@@ -6,7 +6,7 @@ public class RadioButtons: Control {
 	public init() {
 		self.op = clibui.uiNewRadioButtons();
 
-		super.init(c: UnsafeMutablePointer(self.op))
+		super.init(UnsafeMutablePointer(self.op))
 	}
 
 	public func append(text:String) -> Void {

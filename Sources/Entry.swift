@@ -8,7 +8,7 @@ public class Entry: Control {
 		self.op = clibui.uiNewEntry()
 		self.onChangedHandler = {}
 
-		super.init(c: UnsafeMutablePointer(self.op))
+		super.init(UnsafeMutablePointer(self.op))
 	}
 
 	public var text:String {

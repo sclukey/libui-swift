@@ -8,7 +8,7 @@ public class Combobox: Control {
 		self.op = clibui.uiNewCombobox();
 		self.onSelectedHandler = {}
 
-		super.init(c: UnsafeMutablePointer(self.op))
+		super.init(UnsafeMutablePointer(self.op))
 	}
 
 	public func append(text:String) -> Void {

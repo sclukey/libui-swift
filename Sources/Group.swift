@@ -6,7 +6,7 @@ public class Group: Control {
 	public init(title:String) {
 		self.op = clibui.uiNewGroup(title);
 
-		super.init(c: UnsafeMutablePointer(self.op))
+		super.init(UnsafeMutablePointer(self.op))
 	}
 
 	public var title:String {
