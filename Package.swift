@@ -3,7 +3,6 @@ import PackageDescription
 let package = Package(
     name: "ui",
     dependencies: [
-        .Package(url: "../clibui",
-                 majorVersion: 0),
+        .Package(url: "../clibui", Version(0,3,1)),
     ]
 )
