@@ -7,7 +7,7 @@ public class Checkbox: Control {
 	public init(text:String) {
 		self.op = clibui.uiNewCheckbox(text);
 		self.onToggledHandler = {}
-		
+
 		super.init(c: UnsafeMutablePointer(self.op))
 	}
 
@@ -19,7 +19,7 @@ public class Checkbox: Control {
 
 				myself.onToggledHandler()
 			}
-		}, UnsafeMutablePointer<Void>(Unmanaged.passUnretained(self).toOpaque()))		
+		}, UnsafeMutablePointer<Void>(Unmanaged.passUnretained(self).toOpaque()))
 	}
 
 	public var text:String {

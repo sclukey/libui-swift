@@ -28,7 +28,7 @@ public class Button: Control {
 
 				myself.onClickedHandler()
 			}
-		}, UnsafeMutablePointer<Void>(Unmanaged.passUnretained(self).toOpaque()))		
+		}, UnsafeMutablePointer<Void>(Unmanaged.passUnretained(self).toOpaque()))
 	}
 
 }

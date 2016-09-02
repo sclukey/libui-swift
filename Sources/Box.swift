@@ -10,7 +10,7 @@ public class Box: Control {
 		case .Horizontal:
 			self.op = clibui.uiNewHorizontalBox();
 		}
-		
+
 		super.init(c: UnsafeMutablePointer(self.op))
 	}
 

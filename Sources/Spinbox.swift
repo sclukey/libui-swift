@@ -28,7 +28,7 @@ public class Spinbox: Control {
 
 				myself.onChangedHandler()
 			}
-		}, UnsafeMutablePointer<Void>(Unmanaged.passUnretained(self).toOpaque()))		
+		}, UnsafeMutablePointer<Void>(Unmanaged.passUnretained(self).toOpaque()))
 	}
 
 }

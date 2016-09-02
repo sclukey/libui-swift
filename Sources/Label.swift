@@ -5,7 +5,7 @@ public class Label: Control {
 
 	public init(text:String) {
 		self.op = clibui.uiNewLabel(text);
-		
+
 		super.init(c: UnsafeMutablePointer(self.op))
 	}
 

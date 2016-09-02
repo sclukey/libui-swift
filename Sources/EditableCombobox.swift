@@ -32,7 +32,7 @@ public class EditableCombobox: Control {
 
 				myself.onChangedHandler()
 			}
-		}, UnsafeMutablePointer<Void>(Unmanaged.passUnretained(self).toOpaque()))		
+		}, UnsafeMutablePointer<Void>(Unmanaged.passUnretained(self).toOpaque()))
 	}
 
 }
