@@ -9,7 +9,7 @@ public class MenuItem {
 		self.onClickedHandler = {}
 	}
 
-	public func on(clicked: () -> Void) -> Void {
+	public func on(clicked: @escaping () -> Void) -> Void {
 		onClickedHandler = clicked
 		clibui.uiMenuItemOnClicked(self.op, { (s, w, d) -> Void in
 			if let selfPointer = d {

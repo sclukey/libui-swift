@@ -11,7 +11,7 @@ public class Window: Control {
 		super.init(UnsafeMutablePointer(self.op))
 	}
 
-	public func on(closing: () -> Int) {
+	public func on(closing: @escaping () -> Int) {
 		onCloseHandler = closing
 		clibui.uiWindowOnClosing(self.op, { (w, d) -> Int32 in
 			if let windowPointer = d {

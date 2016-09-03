@@ -210,7 +210,7 @@ public class AreaHandler {
 		handler.KeyEvent = { _ in return 0 }
 	}
 
-	public func on(draw: (Area, DrawParams) -> Void) -> Void {
+	public func on(draw: @escaping (Area, DrawParams) -> Void) -> Void {
 		onDrawHandler = draw
 		handler.Draw = { (ah, a, params) -> Void in
 			if let aPointer:OpaquePointer = a {
@@ -223,7 +223,7 @@ public class AreaHandler {
 		}
 	}
 
-	public func on(mouseEvent: (Area, MouseEvent) -> Void) -> Void {
+	public func on(mouseEvent: @escaping (Area, MouseEvent) -> Void) -> Void {
 		onMouseEventHandler = mouseEvent
 		handler.MouseEvent = { (ah, a, event) -> Void in
 			if let aPointer:OpaquePointer = a {
@@ -236,7 +236,7 @@ public class AreaHandler {
 		}
 	}
 
-	public func on(mouseCrossed: (Area, Int) -> Void) -> Void {
+	public func on(mouseCrossed: @escaping (Area, Int) -> Void) -> Void {
 		onMouseCrossedHandler = mouseCrossed
 		handler.MouseCrossed = { (ah, a, intval) -> Void in
 			if let aPointer:OpaquePointer = a {
@@ -247,7 +247,7 @@ public class AreaHandler {
 		}
 	}
 
-	public func on(dragBroken: (Area) -> Void) -> Void {
+	public func on(dragBroken: @escaping (Area) -> Void) -> Void {
 		onDragBrokenHandler = dragBroken
 		handler.DragBroken = { (ah, a) -> Void in
 			if let aPointer:OpaquePointer = a {
@@ -258,7 +258,7 @@ public class AreaHandler {
 		}
 	}
 
-	public func on(keyEvent: (Area, KeyEvent) -> Int) -> Void {
+	public func on(keyEvent: @escaping (Area, KeyEvent) -> Int) -> Void {
 		onKeyEventHandler = keyEvent
 		handler.KeyEvent = { (ah, a, event) -> Int32 in
 			if let aPointer:OpaquePointer = a {

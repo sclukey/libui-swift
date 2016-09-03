@@ -11,7 +11,7 @@ public class Checkbox: Control {
 		super.init(UnsafeMutablePointer(self.op))
 	}
 
-	public func on(toggled: () -> Void) -> Void {
+	public func on(toggled: @escaping () -> Void) -> Void {
 		onToggledHandler = toggled
 		clibui.uiCheckboxOnToggled(self.op, { (w, d) -> Void in
 			if let selfPointer = d {

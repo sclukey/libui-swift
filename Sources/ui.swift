@@ -60,7 +60,7 @@ class onShouldQuitHandlerStruct {
 	var onShouldQuitHandler: () -> Bool = { return true }
 }
 var osqh_obj = onShouldQuitHandlerStruct()
-public func on(shouldQuit: () -> Bool) -> Void {
+public func on(shouldQuit: @escaping () -> Bool) -> Void {
 	osqh_obj.onShouldQuitHandler = shouldQuit
 	clibui.uiOnShouldQuit({ (d) -> Int32 in
 		if let objectPointer = d {

@@ -24,7 +24,7 @@ public class Combobox: Control {
 		}
 	}
 
-	public func on(selected: () -> Void) -> Void {
+	public func on(selected: @escaping () -> Void) -> Void {
 		onSelectedHandler = selected
 		clibui.uiComboboxOnSelected(self.op, { (w, d) -> Void in
 			if let selfPointer = d {

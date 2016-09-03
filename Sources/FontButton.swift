@@ -20,7 +20,7 @@ public class FontButton: Control {
 		return DrawTextFont(cFont!)
 	}
 
-	public func on(changed: () -> Void) -> Void {
+	public func on(changed: @escaping () -> Void) -> Void {
 		onChangedHandler = changed
 		clibui.uiFontButtonOnChanged(self.op, { (w, d) -> Void in
 			if let selfPointer = d {

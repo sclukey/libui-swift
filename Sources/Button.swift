@@ -20,7 +20,7 @@ public class Button: Control {
 		}
 	}
 
-	public func on(clicked: () -> Void) -> Void {
+	public func on(clicked: @escaping () -> Void) -> Void {
 		onClickedHandler = clicked
 		clibui.uiButtonOnClicked(self.op, { (w, d) -> Void in
 			if let selfPointer = d {

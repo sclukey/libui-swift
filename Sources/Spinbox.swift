@@ -20,7 +20,7 @@ public class Spinbox: Control {
 		}
 	}
 
-	public func on(changed: () -> Void) -> Void {
+	public func on(changed: @escaping () -> Void) -> Void {
 		onChangedHandler = changed
 		clibui.uiSpinboxOnChanged(self.op, { (w, d) -> Void in
 			if let selfPointer = d {
