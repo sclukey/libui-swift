@@ -113,9 +113,9 @@ public class DrawBrush {
 		}
 
 		// Initialize the self.cStops
-		self.cStops = UnsafeMutablePointer<clibui.uiDrawBrushGradientStop>(allocatingCapacity:cStruct.NumStops)
+		self.cStops = UnsafeMutablePointer<clibui.uiDrawBrushGradientStop>.allocate(capacity:cStruct.NumStops)
 		if cStruct.NumStops > 0 {
-			self.cStops.initializeFrom(cStruct.Stops, count:cStruct.NumStops)
+			self.cStops.initialize(from:cStruct.Stops, count:cStruct.NumStops)
 		}
 		self.cNumStops = cStruct.NumStops
 	}
@@ -127,22 +127,22 @@ public class DrawBrush {
 
 	deinit {
 		self.cStops.deinitialize()
-		self.cStops.deallocateCapacity(self.cNumStops)
+		self.cStops.deallocate(capacity:self.cNumStops)
 	}
 
 	private func updateCStops() -> Void {
 		// Remove the previous cStops
 		self.cStops.deinitialize()
-		self.cStops.deallocateCapacity(self.cNumStops)
+		self.cStops.deallocate(capacity:self.cNumStops)
 
 		// Create the new cStops
-		self.cStops = UnsafeMutablePointer<clibui.uiDrawBrushGradientStop>(allocatingCapacity:self.stops.count)
+		self.cStops = UnsafeMutablePointer<clibui.uiDrawBrushGradientStop>.allocate(capacity:self.stops.count)
 		if self.stops.count > 0 {
 			var arrayOfCStructs:[clibui.uiDrawBrushGradientStop] = []
 			for thisStop in self.stops {
 				arrayOfCStructs.append(thisStop.toC())
 			}
-			cStops.initializeFrom(arrayOfCStructs, count:self.stops.count)
+			cStops.initialize(from:arrayOfCStructs, count:self.stops.count)
 		}
 		self.cNumStops = self.stops.count
 	}
@@ -225,9 +225,9 @@ public class StrokeParams {
 		self.dashPhase = cStruct.DashPhase
 
 		// Initialize the self.cDashes
-		self.cDashes = UnsafeMutablePointer<Double>(allocatingCapacity:cStruct.NumDashes)
+		self.cDashes = UnsafeMutablePointer<Double>.allocate(capacity:cStruct.NumDashes)
 		if cStruct.NumDashes > 0 {
-			self.cDashes.initializeFrom(cStruct.Dashes, count:cStruct.NumDashes)
+			self.cDashes.initialize(from:cStruct.Dashes, count:cStruct.NumDashes)
 		}
 		self.cNumDashes = cStruct.NumDashes
 	}
@@ -239,18 +239,18 @@ public class StrokeParams {
 
 	deinit {
 		self.cDashes.deinitialize()
-		self.cDashes.deallocateCapacity(self.cNumDashes)
+		self.cDashes.deallocate(capacity:self.cNumDashes)
 	}
 
 	private func updateCDashes() -> Void {
 		// Remove the previous cDashes
 		self.cDashes.deinitialize()
-		self.cDashes.deallocateCapacity(self.cNumDashes)
+		self.cDashes.deallocate(capacity:self.cNumDashes)
 
 		// Create the new cDashes
-		self.cDashes = UnsafeMutablePointer<Double>(allocatingCapacity:self.dashes.count)
+		self.cDashes = UnsafeMutablePointer<Double>.allocate(capacity:self.dashes.count)
 		if self.dashes.count > 0 {
-			cDashes.initializeFrom(self.dashes)
+			cDashes.initialize(from:self.dashes)
 		}
 		self.cNumDashes = self.dashes.count
 	}
