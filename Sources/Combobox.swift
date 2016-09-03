@@ -32,7 +32,7 @@ public class Combobox: Control {
 
 				myself.onSelectedHandler()
 			}
-		}, UnsafeMutablePointer<Void>(Unmanaged.passUnretained(self).toOpaque()))
+		}, UnsafeMutableRawPointer(Unmanaged.passUnretained(self).toOpaque()))
 	}
 
 }

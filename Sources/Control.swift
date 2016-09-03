@@ -10,8 +10,8 @@ public class Control {
 		clibui.uiControlDestroy(self.control)
 	}
 
-	public func handle() -> UnsafeMutablePointer<Void> {
-		return UnsafeMutablePointer<Void>(bitPattern:clibui.uiControlHandle(self.control))!
+	public func handle() -> UnsafeMutableRawPointer {
+		return UnsafeMutableRawPointer(bitPattern:clibui.uiControlHandle(self.control))!
 	}
 
 	public func topLevel() -> Int {

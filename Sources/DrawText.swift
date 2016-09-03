@@ -30,10 +30,10 @@ public class DrawTextFont {
 		return DrawTextFontMetrics(cMetrics)
 	}
 
-	public func fontHandle() -> UnsafePointer<Void> {
+	public func fontHandle() -> UnsafeRawPointer {
 		// This forced unwrapping should always be safe because this class
 		// should only initialized when there is a valid font
-		return UnsafePointer<Void>(bitPattern:clibui.uiDrawTextFontHandle(self.op))!
+		return UnsafeRawPointer(bitPattern:clibui.uiDrawTextFontHandle(self.op))!
 	}
 }
 

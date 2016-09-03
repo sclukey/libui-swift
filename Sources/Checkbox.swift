@@ -19,7 +19,7 @@ public class Checkbox: Control {
 
 				myself.onToggledHandler()
 			}
-		}, UnsafeMutablePointer<Void>(Unmanaged.passUnretained(self).toOpaque()))
+		}, UnsafeMutableRawPointer(Unmanaged.passUnretained(self).toOpaque()))
 	}
 
 	public var text:String {

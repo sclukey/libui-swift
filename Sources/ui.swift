@@ -69,7 +69,7 @@ public func on(shouldQuit: @escaping () -> Bool) -> Void {
 			return object.onShouldQuitHandler() ? 1 : 0
 		}
 		return 1
-	}, UnsafeMutablePointer<Void>(Unmanaged.passUnretained(osqh_obj).toOpaque()))
+	}, UnsafeMutableRawPointer(Unmanaged.passUnretained(osqh_obj).toOpaque()))
 }
 
 public func messageBox(parent:Window, title:String, description:String) -> Void {

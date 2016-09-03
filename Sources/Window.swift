@@ -21,7 +21,7 @@ public class Window: Control {
 			}
 
 			return -1
-		}, UnsafeMutablePointer<Void>(Unmanaged.passUnretained(self).toOpaque()))
+		}, UnsafeMutableRawPointer(Unmanaged.passUnretained(self).toOpaque()))
 	}
 
 	public var title:String {
