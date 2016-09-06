@@ -2,11 +2,11 @@
 
 This is an object oriented (and much more "Swifty") wrapper for [clibui](https://github.com/sclukey/clibui), which provides Swift bindings for [libui](https://github.com/andlabs/libui).
 
-# Swift Version
+## Swift Version
 
 This package is tested with Swift 3, earlier versions of Swift will be ignored completely.
 
-# libui Version
+## libui Version
 
 Currently this package is built to support libui version **Alpha3.1**. I intend to update this for each release version, but between releases libui's HEAD may not be supported.
 
@@ -29,3 +29,7 @@ Finally, when compiling a project that uses this package you need give Swift the
 ```
 swift build -Xswiftc -I/path/to/libui/src -Xlinker -L/path/to/libui/linux_amd64/static
 ```
+
+## Examples
+
+There are example programs available [here](https://github.com/sclukey/libui-swift-examples).
