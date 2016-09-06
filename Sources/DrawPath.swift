@@ -54,3 +54,38 @@ public class DrawPath {
 		clibui.uiDrawFill(context.op, self.op, &cBrush)
 	}
 }
+
+public class DrawContext {
+	let op:OpaquePointer;
+
+	init(_ cStruct:OpaquePointer) {
+		self.op = cStruct
+	}
+
+	public func transform(matrix:DrawMatrix) -> Void {
+		clibui.uiDrawTransform(self.op, &matrix.cStruct);
+	}
+}
+
+public struct DrawParams {
+	public var context:DrawContext
+
+	public var areaWidth:Double
+	public var areaHeight:Double
+
+	public var clipX:Double
+	public var clipY:Double
+	public var clipWidth:Double
+	public var clipHeight:Double
+
+	init(withCStruct cStruct:clibui.uiAreaDrawParams) {
+		self.areaWidth = cStruct.AreaWidth
+		self.areaHeight = cStruct.AreaHeight
+		self.clipX = cStruct.ClipX
+		self.clipY = cStruct.ClipY
+		self.clipWidth = cStruct.ClipWidth
+		self.clipHeight = cStruct.ClipHeight
+
+		self.context = DrawContext(cStruct.Context)
+	}
+}

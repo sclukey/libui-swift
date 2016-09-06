@@ -45,6 +45,95 @@ public class ScrollingArea: Area {
 	}
 }
 
+public class AreaHandler {
+	var handler:clibui.uiAreaHandler;
+
+	private var onDrawHandler: (Area, DrawParams) -> Void
+	private var onMouseEventHandler: (Area, MouseEvent) -> Void
+	private var onMouseCrossedHandler: (Area, Int) -> Void
+	private var onDragBrokenHandler: (Area) -> Void
+	private var onKeyEventHandler: (Area, KeyEvent) -> Int
+
+	public init() {
+		self.onDrawHandler = { _ in }
+		self.onMouseEventHandler = { _ in }
+		self.onMouseCrossedHandler = { _ in }
+		self.onDragBrokenHandler = { _ in }
+		self.onKeyEventHandler = { _ in return 0 }
+
+		handler = clibui.uiAreaHandler()
+
+		// Give these defaults, otherwise libui will segfault
+		handler.Draw = { _ in }
+		handler.MouseEvent = { _ in }
+		handler.MouseCrossed = { _ in }
+		handler.DragBroken = { _ in }
+		handler.KeyEvent = { _ in return 0 }
+	}
+
+	public func on(draw: @escaping (Area, DrawParams) -> Void) -> Void {
+		onDrawHandler = draw
+		handler.Draw = { (ah, a, params) -> Void in
+			if let aPointer:OpaquePointer = a {
+				if let sArea:Area = uiAreaMap[aPointer.hashValue] {
+					if let drawParams = params {
+						sArea.handler.onDrawHandler(sArea, DrawParams(withCStruct:drawParams.pointee))
+					}
+				}
+			}
+		}
+	}
+
+	public func on(mouseEvent: @escaping (Area, MouseEvent) -> Void) -> Void {
+		onMouseEventHandler = mouseEvent
+		handler.MouseEvent = { (ah, a, event) -> Void in
+			if let aPointer:OpaquePointer = a {
+				if let sArea:Area = uiAreaMap[aPointer.hashValue] {
+					if let mE = event {
+						sArea.handler.onMouseEventHandler(sArea, MouseEvent(withCStruct:mE.pointee))
+					}
+				}
+			}
+		}
+	}
+
+	public func on(mouseCrossed: @escaping (Area, Int) -> Void) -> Void {
+		onMouseCrossedHandler = mouseCrossed
+		handler.MouseCrossed = { (ah, a, intval) -> Void in
+			if let aPointer:OpaquePointer = a {
+				if let sArea:Area = uiAreaMap[aPointer.hashValue] {
+					sArea.handler.onMouseCrossedHandler(sArea, Int(intval))
+				}
+			}
+		}
+	}
+
+	public func on(dragBroken: @escaping (Area) -> Void) -> Void {
+		onDragBrokenHandler = dragBroken
+		handler.DragBroken = { (ah, a) -> Void in
+			if let aPointer:OpaquePointer = a {
+				if let sArea:Area = uiAreaMap[aPointer.hashValue] {
+					sArea.handler.onDragBrokenHandler(sArea)
+				}
+			}
+		}
+	}
+
+	public func on(keyEvent: @escaping (Area, KeyEvent) -> Int) -> Void {
+		onKeyEventHandler = keyEvent
+		handler.KeyEvent = { (ah, a, event) -> Int32 in
+			if let aPointer:OpaquePointer = a {
+				if let sArea:Area = uiAreaMap[aPointer.hashValue] {
+					if let kE = event {
+						return Int32(sArea.handler.onKeyEventHandler(sArea, KeyEvent(withCStruct:kE.pointee)))
+					}
+				}
+			}
+			return 0
+		}
+	}
+}
+
 // This is another bunch of rewritten enumerations and supporting structs,
 // see `DrawText.swift` for more discussion, but the bottom line is that this
 // is unfortunate but I think it provides a nicer Swift API.
@@ -148,129 +237,3 @@ public struct KeyEvent {
 		self.extKey = ExtKey(rawValue: Int(cStruct.ExtKey))!
 	}
 }
-
-public class DrawContext {
-	let op:OpaquePointer;
-
-	init(_ cStruct:OpaquePointer) {
-		self.op = cStruct
-	}
-
-	public func transform(matrix:DrawMatrix) -> Void {
-		clibui.uiDrawTransform(self.op, &matrix.cStruct);
-	}
-}
-
-public struct DrawParams {
-	public var context:DrawContext
-
-	public var areaWidth:Double
-	public var areaHeight:Double
-
-	public var clipX:Double
-	public var clipY:Double
-	public var clipWidth:Double
-	public var clipHeight:Double
-
-	init(withCStruct cStruct:clibui.uiAreaDrawParams) {
-		self.areaWidth = cStruct.AreaWidth
-		self.areaHeight = cStruct.AreaHeight
-		self.clipX = cStruct.ClipX
-		self.clipY = cStruct.ClipY
-		self.clipWidth = cStruct.ClipWidth
-		self.clipHeight = cStruct.ClipHeight
-
-		self.context = DrawContext(cStruct.Context)
-	}
-}
-
-public class AreaHandler {
-	var handler:clibui.uiAreaHandler;
-
-	private var onDrawHandler: (Area, DrawParams) -> Void
-	private var onMouseEventHandler: (Area, MouseEvent) -> Void
-	private var onMouseCrossedHandler: (Area, Int) -> Void
-	private var onDragBrokenHandler: (Area) -> Void
-	private var onKeyEventHandler: (Area, KeyEvent) -> Int
-
-	public init() {
-		self.onDrawHandler = { _ in }
-		self.onMouseEventHandler = { _ in }
-		self.onMouseCrossedHandler = { _ in }
-		self.onDragBrokenHandler = { _ in }
-		self.onKeyEventHandler = { _ in return 0 }
-
-		handler = clibui.uiAreaHandler()
-
-		// Give these defaults, otherwise libui will segfault
-		handler.Draw = { _ in }
-		handler.MouseEvent = { _ in }
-		handler.MouseCrossed = { _ in }
-		handler.DragBroken = { _ in }
-		handler.KeyEvent = { _ in return 0 }
-	}
-
-	public func on(draw: @escaping (Area, DrawParams) -> Void) -> Void {
-		onDrawHandler = draw
-		handler.Draw = { (ah, a, params) -> Void in
-			if let aPointer:OpaquePointer = a {
-				if let sArea:Area = uiAreaMap[aPointer.hashValue] {
-					if let drawParams = params {
-						sArea.handler.onDrawHandler(sArea, DrawParams(withCStruct:drawParams.pointee))
-					}
-				}
-			}
-		}
-	}
-
-	public func on(mouseEvent: @escaping (Area, MouseEvent) -> Void) -> Void {
-		onMouseEventHandler = mouseEvent
-		handler.MouseEvent = { (ah, a, event) -> Void in
-			if let aPointer:OpaquePointer = a {
-				if let sArea:Area = uiAreaMap[aPointer.hashValue] {
-					if let mE = event {
-						sArea.handler.onMouseEventHandler(sArea, MouseEvent(withCStruct:mE.pointee))
-					}
-				}
-			}
-		}
-	}
-
-	public func on(mouseCrossed: @escaping (Area, Int) -> Void) -> Void {
-		onMouseCrossedHandler = mouseCrossed
-		handler.MouseCrossed = { (ah, a, intval) -> Void in
-			if let aPointer:OpaquePointer = a {
-				if let sArea:Area = uiAreaMap[aPointer.hashValue] {
-					sArea.handler.onMouseCrossedHandler(sArea, Int(intval))
-				}
-			}
-		}
-	}
-
-	public func on(dragBroken: @escaping (Area) -> Void) -> Void {
-		onDragBrokenHandler = dragBroken
-		handler.DragBroken = { (ah, a) -> Void in
-			if let aPointer:OpaquePointer = a {
-				if let sArea:Area = uiAreaMap[aPointer.hashValue] {
-					sArea.handler.onDragBrokenHandler(sArea)
-				}
-			}
-		}
-	}
-
-	public func on(keyEvent: @escaping (Area, KeyEvent) -> Int) -> Void {
-		onKeyEventHandler = keyEvent
-		handler.KeyEvent = { (ah, a, event) -> Int32 in
-			if let aPointer:OpaquePointer = a {
-				if let sArea:Area = uiAreaMap[aPointer.hashValue] {
-					if let kE = event {
-						return Int32(sArea.handler.onKeyEventHandler(sArea, KeyEvent(withCStruct:kE.pointee)))
-					}
-				}
-			}
-			return 0
-		}
-	}
-}
-
-
