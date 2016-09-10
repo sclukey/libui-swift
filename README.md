@@ -4,7 +4,7 @@ This is an object oriented (and much more "Swifty") wrapper for [clibui](https:/
 
 ## Swift Version
 
-This package is tested with Swift 3, earlier versions of Swift will be ignored completely.
+This package is tested with Swift 3, earlier versions of Swift will be ignored completely. Specifically, this is compatible with **Swift 3.0 Preview 6 and above**.
 
 ## libui Version
 
