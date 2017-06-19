@@ -18,8 +18,8 @@ public class Box: Control {
 		clibui.uiBoxAppend(self.op, child.control, stretchy ? 1 : 0)
 	}
 
-	public func delete(index:Int) -> Void {
-		clibui.uiBoxDelete(self.op, UInt(index))
+	public func delete(index:Int32) -> Void {
+		clibui.uiBoxDelete(self.op, index)
 	}
 
 	public var padded:Bool {

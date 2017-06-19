@@ -57,7 +57,7 @@ public class DrawTextLayout {
 		clibui.uiDrawTextLayoutSetWidth(self.op, width)
 	}
 
-	public func setColor(start:Int, end:Int, red:Double, green:Double, blue:Double, alpha:Double) -> Void {
+	public func setColor(start:Int32, end:Int32, red:Double, green:Double, blue:Double, alpha:Double) -> Void {
 		clibui.uiDrawTextLayoutSetColor(self.op, start, end, red, green, blue, alpha)
 	}
 

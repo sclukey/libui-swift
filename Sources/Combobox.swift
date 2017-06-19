@@ -15,9 +15,9 @@ public class Combobox: Control {
 		clibui.uiComboboxAppend(self.op, text)
 	}
 
-	public var selected:Int {
+	public var selected:Int32 {
 		get {
-			return Int(clibui.uiComboboxSelected(self.op))
+			return Int32(clibui.uiComboboxSelected(self.op))
 		}
 		set {
 			clibui.uiComboboxSetSelected(self.op, newValue)

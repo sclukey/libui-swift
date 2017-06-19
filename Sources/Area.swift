@@ -32,11 +32,11 @@ public class Area: Control {
 }
 
 public class ScrollingArea: Area {
-	public init(handler:AreaHandler, width:Int, height:Int) {
+	public init(handler:AreaHandler, width:Int32, height:Int32) {
 		super.init(clibui.uiNewScrollingArea(&handler.handler, width, height), handler:handler)
 	}
 
-	public func setSize(width:Int, height:Int) -> Void {
+	public func setSize(width:Int32, height:Int32) -> Void {
 		clibui.uiAreaSetSize(self.op, width, height)
 	}
 
@@ -152,10 +152,10 @@ public struct MouseEvent {
 	public var areaWidth:Double;
 	public var areaHeight:Double;
 
-	public var down:UInt;
-	public var up:UInt;
+	public var down:Int32;
+	public var up:Int32;
 
-	public var count:UInt;
+	public var count:Int32;
 
 	public var modifiers:ModifierKeys;
 

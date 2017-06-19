@@ -4,16 +4,16 @@ public class Slider: Control {
 	let op:OpaquePointer;
 	private var onChangedHandler: () -> Void
 
-	public init(min:Int, max:Int) {
+	public init(min:Int32, max:Int32) {
 		self.op = clibui.uiNewSlider(min, max);
 		self.onChangedHandler = {}
 
 		super.init(UnsafeMutablePointer(self.op))
 	}
 
-	public var value:Int {
+	public var value:Int32 {
 		get {
-			return Int(clibui.uiSliderValue(self.op))
+			return Int32(clibui.uiSliderValue(self.op))
 		}
 		set {
 			clibui.uiSliderSetValue(self.op, newValue)
